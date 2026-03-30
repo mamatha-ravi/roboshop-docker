@@ -1,26 +1,26 @@
-service:
+services:
   mongodb:
     build: ./mongodb # it moves to mongodb Dockerfile directory
     image: mamatar/mongodb:1.0.0 # docker build -t mamatar/mongodb:1.0.0
-    container-name: mongodb
+    container_name: mongodb
   redis:
     image: redis:7.0
     container_name: redis
   mysql:
     build: ./mysql
     image: mamatar/mysql:1.0.0
-    container-name: mysql
+    container_name: mysql
   rabbitmq:
     image: rabbitmq:3
     environment: 
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
-    container-name: rabbitmq
+    container_name: rabbitmq
   catalogue:
     build: ./catalogue
     image: mamatar/catalogue:1.0.0
-    container-name: catalogue
-    depends-on:
+    container_name: catalogue
+    depends_on:
     - mongodb
   user:
     build: ./user
