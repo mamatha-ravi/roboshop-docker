@@ -25,6 +25,9 @@ services:
   user:
     build: ./user
     image: mamatar/user:1.0.0
+    environment:
+    MONGO: "true"
+    MONGO_URL: "mongodb://mongodb:27017/users"
     container_name: user
     depends_on:
     - redis
