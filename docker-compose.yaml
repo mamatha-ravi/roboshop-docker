@@ -3,19 +3,27 @@ services:
     build: ./mongodb # it moves to mongodb Dockerfile directory
     image: mamatar/mongodb:1.0.0 # docker build -t mamatar/mongodb:1.0.0
     container_name: mongodb
+    volumes:
+    - mongodb:/data/db
   redis:
     image: redis:7.0
     container_name: redis
+    volumes:
+    - redis:/data
   mysql:
     build: ./mysql
     image: mamatar/mysql:1.0.0
     container_name: mysql
+    volumes:
+    - mysql:/var/lib/mysql
   rabbitmq:
     image: rabbitmq:3
     environment: 
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
     container_name: rabbitmq
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
   catalogue:
     build: ./catalogue
     image: mamatar/catalogue:1.0.0
@@ -80,5 +88,9 @@ networks:
     name: roboshop
     external: false # if true, you need to create network manually\
 
-    
+volumes:
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq:    
   
